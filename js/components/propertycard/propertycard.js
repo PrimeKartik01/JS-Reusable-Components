@@ -163,7 +163,7 @@ export function initPropertyCard({
                 ${property.description ? `<p class="text-gray-600 text-sm mt-3 line-clamp-2">${property.description}</p>` : ""}
                 ${agentHTML}
                
-                    <button class="view-details w-full mt-3 flex-1 bg-gray-900 text-white py-2 rounded-lg text-sm font-medium hover:bg-gray-700 transition" data-id="${property.id}">View Details</button>
+                    <button class="view-details w-full mt-3 flex-1 bg-gray-900 text-white py-4 rounded-lg text-sm font-medium hover:bg-gray-700 transition" data-id="${property.id}">Enquiry</button>
                
             </div>
         `;

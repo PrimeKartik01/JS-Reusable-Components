@@ -199,7 +199,7 @@ export function initNavbar({
         if (window.scrollY > 80) {
 
             navbar.classList.add(
-                "bg-black/20",
+                "bg-black/70",
                 "backdrop-blur-xl",
                 "shadow-lg"
             );
@@ -207,7 +207,7 @@ export function initNavbar({
         } else {
 
             navbar.classList.remove(
-                "bg-black/20",
+                "bg-black/70",
                 "backdrop-blur-xl",
                 "shadow-lg"
             );

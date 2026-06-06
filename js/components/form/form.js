@@ -98,14 +98,14 @@ export function initForm({
                     >
 
                         ${normalFields
-                            .map(field => {
+            .map(field => {
 
-                                if (
-                                    field.type ===
-                                    "select"
-                                ) {
+                if (
+                    field.type ===
+                    "select"
+                ) {
 
-                                    return `
+                    return `
                                     
                                         <div>
 
@@ -146,25 +146,25 @@ export function initForm({
                                                 </option>
 
                                                 ${field.options
-                                                    .map(
-                                                        option => `
+                            .map(
+                                option => `
                                                         
                                                         <option value="${option}">
                                                             ${option}
                                                         </option>
                                                     
                                                     `
-                                                    )
-                                                    .join("")}
+                            )
+                            .join("")}
 
                                             </select>
 
                                         </div>
                                     
                                     `;
-                                }
+                }
 
-                                return `
+                return `
                                 
                                     <div>
 
@@ -205,14 +205,14 @@ export function initForm({
                                     </div>
                                 
                                 `;
-                            })
-                            .join("")}
+            })
+            .join("")}
 
                     </div>
 
                     ${textareas
-                        .map(
-                            field => `
+            .map(
+                field => `
                             
                             <div>
 
@@ -254,8 +254,8 @@ export function initForm({
                             </div>
                         
                         `
-                        )
-                        .join("")}
+            )
+            .join("")}
 
                     <button
                         type="submit"
@@ -409,19 +409,35 @@ export function initForm({
 
     form.addEventListener(
         "submit",
-        event => {
+        async event => {
 
             event.preventDefault();
+            const formData = new FormData(form);
 
-            const formData =
-                new FormData(form);
+            const values =Object.fromEntries(formData.entries());
 
-            const values =
-                Object.fromEntries(
-                    formData.entries()
-                );
+            try {
+                
+                const response =
+                    await fetch(
+                        "submit-lead.php",
+                        {
+                            method: "POST",
 
-            onSubmit?.(values);
+                            headers: {
+                                "Content-Type":
+                                "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(values)
+                        }
+                    );
+
+                const result = await response.json();
+                console.log(result);
+
+            } catch (error) { console.error(error); }
         }
     );
 }
